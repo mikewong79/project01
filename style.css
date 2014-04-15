@@ -1,0 +1,5 @@
+body {background-color:blue;}
+.container {width:100%;}
+.board {background-color:black;height:400px;width:400px;margin:0 auto;}
+.cell {background-color:gray;width:100px;height:100px;float:left;margin:5px;}
+.row {clear:both;}
