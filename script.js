@@ -1,4 +1,5 @@
 // Let's create some global variables we can play with.
+var winner = false;
 var turn = 0;
 var cells = document.getElementsByClassName("cell");
 var win = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
@@ -27,10 +28,10 @@ var click = function() {
   // Increments turn and checks to see if its a cats game.
   // Need to differentiate when turn 9 results in a win.
   turn++;
-  if (turn === 9) {
+  gameOver();
+  if (turn === 9 && !winner) {
     alert("Cat's Game");
   }
-  gameOver();
 };
 
 // Checks if somebody has won.  Runs through each array in win and checks
@@ -39,8 +40,12 @@ var gameOver = function() {
   for (i = 0; i < win.length; i++) {
     if (eval("cell" + win[i][0]) + eval("cell" + win[i][1]) + eval("cell"+ win[i][2]) === 3) {
       alert("Red Wins");
+      winner = true;
+      break;
     } if (eval("cell" + win[i][0]) + eval("cell" + win[i][1]) + eval("cell"+ win[i][2]) === -3) {
       alert("Green Wins");
+      winner = true;
+      break;
     }
   }
 };
