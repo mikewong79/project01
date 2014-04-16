@@ -2,6 +2,7 @@
 var winner = false;
 var turn = 0;
 var cells = document.getElementsByClassName("cell");
+var title = 0;
 var win = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 // This creates global variables cell0 through cell8 equal to 0,
 // which will be changed to a 1 for red or -1 for green.
@@ -30,7 +31,7 @@ var click = function() {
   turn++;
   gameOver();
   if (turn === 9 && !winner) {
-    alert("Cat's Game");
+    title.innerHTML = "Cat's Game";
   }
 };
 
@@ -39,11 +40,11 @@ var click = function() {
 var gameOver = function() {
   for (i = 0; i < win.length; i++) {
     if (eval("cell" + win[i][0]) + eval("cell" + win[i][1]) + eval("cell"+ win[i][2]) === 3) {
-      alert("Red Wins");
+      title.innerHTML = "Red Wins";
       winner = true;
       break;
     } if (eval("cell" + win[i][0]) + eval("cell" + win[i][1]) + eval("cell"+ win[i][2]) === -3) {
-      alert("Green Wins");
+      title.innerHTML = "Green Wins";
       winner = true;
       break;
     }
@@ -56,6 +57,8 @@ var start = function() {
   for (var i = 0; i < cells.length; i++) {
     cells[i].onclick = click;
   }
+  title = document.getElementsByTagName("header")[0];
+
 };
 
 window.onload = start;
