@@ -1,4 +1,7 @@
 // Let's create some global variables we can play with.
+var player1 = 0;
+var player2 = 0;
+var draw = 0;
 var winner = false;
 var turn = 0;
 var cells = document.getElementsByClassName("cell");
@@ -32,6 +35,8 @@ var click = function() {
   gameOver();
   if (turn === 9 && !winner) {
     title.innerHTML = "Cat's Game";
+    draw++;
+    scoreboard();
   }
 };
 
@@ -41,14 +46,54 @@ var gameOver = function() {
   for (i = 0; i < win.length; i++) {
     if (eval("cell" + win[i][0]) + eval("cell" + win[i][1]) + eval("cell"+ win[i][2]) === 3) {
       title.innerHTML = "Red Wins";
-      winner = true;
+      player1++;
+      wingame();
       break;
     } if (eval("cell" + win[i][0]) + eval("cell" + win[i][1]) + eval("cell"+ win[i][2]) === -3) {
       title.innerHTML = "Green Wins";
-      winner = true;
+      player2++;
+      wingame();
       break;
     }
   }
+};
+
+// Changes the scoreboard to reflect the current score.
+var scoreboard = function() {
+  document.getElementById("player1").innerHTML = player1;
+  document.getElementById("draw").innerHTML = draw;
+  document.getElementById("player2").innerHTML = player2;
+};
+
+// Makes all cells non-responsive to clicks after a winner has been found.
+var wingame = function() {
+  winner = true;
+  scoreboard();
+  for (i = 0; i < 9; i++) {
+    if (window["cell" + i.toString()] === 0) {
+      window["cell" + i.toString()] = 3;
+    }
+  }
+};
+
+// Resets game board and all variables except score variables.
+var replay = function() {
+  turn = 0;
+  winner = false;
+  title.innerHTML = "Tic Tac Toe";
+  for (var i = 0; i < 9; i++) {
+    window["cell" + i.toString()] = 0;
+    document.getElementById("cell" + i.toString()).style.backgroundColor = "gray";
+  }
+};
+
+//Resets scoreas well as game board and variables.
+var reset = function() {
+  player1 = 0;
+  player2 = 0;
+  draw = 0;
+  scoreboard();
+  replay();
 };
 
 // Makes each of the 9 cells clickable and run the function "click" when
