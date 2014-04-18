@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" x-ng-app="ConnectFourApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script> <!-- bringing in Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"> </script> <!-- bringing in Angular resource -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js"></script> <!-- bringing in Angular route -->
+  <script src="angular.js"></script>
+</head>
+<body x-ng-controller="ConnectFourCtrl">
+  <header>Tic Tac Toe</header>
+  <div class="container">
+    <div class="connectfour">
+      <div class="row" x-ng-repeat="row in board track by $index">
+        <div x-ng-class="class" x-ng-repeat="cell in row track by $index" x-ng-click="click();" id="{{$parent.$index}},{{$index}}"></div>
+      </div>
+    </div>
+  </div>
+  <footer><button onClick="replay()">Play Again?</button><button onClick="reset()">Reset</button><div class="scoreboard"><div>Red<div id="player1">0</div></div><div>Draw<div id="draw">0</div></div><div>Green<div id="player2">0</div></div></div></footer>
+
+</body>
+</html>

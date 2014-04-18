@@ -1,3 +1,4 @@
+/*Tic Tac Toe Style*/
 .container {width:100%;}
 header {text-align:center;font-size:20px;}
 .board {background-color:black;height:310px;width:310px;margin:0 auto;}
@@ -8,3 +9,8 @@ footer {clear:both;text-align:center;}
 .scoreboard {width:310px;margin:0 auto;}
 .scoreboard div {width:100px;display:inline-block;}
 
+/*Additional Connect Four Style*/
+.connectfour {background-color:black;height:450px;width:600px;margin:0 auto;}
+.box{background-color:gray;width:75px;height:75px;float:left;border-radius:40px;}
+.green{background-color:green;width:75px;height:75px;float:left;border-radius:40px;}
+.red{background-color:red;width:75px;height:75px;float:left;border-radius:40px;}
