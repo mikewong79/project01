@@ -52,6 +52,30 @@ function ConnectFourCtrl($scope, $resource){
                 break;
             }
         }
+        for (var c = -3; c < 1; c++) {
+            // Check diagnol \
+            if (row + c >= 0 && row + c + 3 <= 5 && col + c >= 0 && col + c + 3 <= 6) {
+                if ($scope.board[row+c][col+c] + $scope.board[row+c+1][col+c+1] + $scope.board[row+c+2][col+c+2] + $scope.board[row+c+3][col+c+3] === 4) {
+                    console.log("red wins");
+                    console.log($scope.board);
+                }
+                if ($scope.board[row+c][col+c] + $scope.board[row+c+1][col+c+1] + $scope.board[row+c+2][col+c+2] + $scope.board[row+c+3][col+c+3] === -4) {
+                    console.log("green wins");
+                    console.log($scope.board);
+                }
+            }
+            // Check diagnol /
+            if (row - c - 3>= 0 && row - c <= 5 && col + c >= 0 && col + c + 3 <= 6) {
+                if ($scope.board[row-c][col+c] + $scope.board[row-c-1][col+c+1] + $scope.board[row-c-2][col+c+2] + $scope.board[row-c-3][col+c+3] === 4) {
+                    console.log("red wins");
+                    console.log($scope.board);
+                }
+                if ($scope.board[row-c][col+c] + $scope.board[row-c-1][col+c+1] + $scope.board[row-c-2][col+c+2] + $scope.board[row-c-3][col+c+3] === -4) {
+                    console.log("green wins");
+                    console.log($scope.board);
+                }
+            }
+        }
     };
 
     $scope.click = function() {
