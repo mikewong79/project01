@@ -27,28 +27,25 @@ function ConnectFourCtrl($scope, $resource){
     // };
 
     $scope.checkwin = function(row,col) {
-        console.log(row,col);
+        // Check horizontal
         for (var i = -3; i < 1; i++) {
             if (col + i >= 0 && col + i <= 6) {
                 if ($scope.board[row][col+i] + $scope.board[row][col + i + 1] + $scope.board[row][col + i + 2] + $scope.board[row][col + i + 3] === 4) {
                     console.log("red wins");
-                    console.log($scope.board);
                 }
                 if ($scope.board[row][col+i] + $scope.board[row][col + i + 1] + $scope.board[row][col + i + 2] + $scope.board[row][col + i + 3] === -4) {
                     console.log("green wins");
-                    console.log($scope.board);
                 }
             }
         }
+        // Check vertical
         for (var b = 0; b < 3; b++) {
             if ($scope.board[b][col] + $scope.board[b+1][col] + $scope.board[b+2][col] + $scope.board[b+3][col] === 4) {
                 console.log("red wins");
-                console.log($scope.board);
                 break;
             }
             if ($scope.board[b][col] + $scope.board[b+1][col] + $scope.board[b+2][col] + $scope.board[b+3][col] === -4) {
                 console.log("green wins");
-                console.log($scope.board);
                 break;
             }
         }
@@ -57,22 +54,18 @@ function ConnectFourCtrl($scope, $resource){
             if (row + c >= 0 && row + c + 3 <= 5 && col + c >= 0 && col + c + 3 <= 6) {
                 if ($scope.board[row+c][col+c] + $scope.board[row+c+1][col+c+1] + $scope.board[row+c+2][col+c+2] + $scope.board[row+c+3][col+c+3] === 4) {
                     console.log("red wins");
-                    console.log($scope.board);
                 }
                 if ($scope.board[row+c][col+c] + $scope.board[row+c+1][col+c+1] + $scope.board[row+c+2][col+c+2] + $scope.board[row+c+3][col+c+3] === -4) {
                     console.log("green wins");
-                    console.log($scope.board);
                 }
             }
             // Check diagnol /
             if (row - c - 3>= 0 && row - c <= 5 && col + c >= 0 && col + c + 3 <= 6) {
                 if ($scope.board[row-c][col+c] + $scope.board[row-c-1][col+c+1] + $scope.board[row-c-2][col+c+2] + $scope.board[row-c-3][col+c+3] === 4) {
                     console.log("red wins");
-                    console.log($scope.board);
                 }
                 if ($scope.board[row-c][col+c] + $scope.board[row-c-1][col+c+1] + $scope.board[row-c-2][col+c+2] + $scope.board[row-c-3][col+c+3] === -4) {
                     console.log("green wins");
-                    console.log($scope.board);
                 }
             }
         }
@@ -92,24 +85,54 @@ function ConnectFourCtrl($scope, $resource){
         if ($scope.board[x][y] === 0) {
             $scope.count++;
             document.getElementById(x.toString()+","+y.toString()).style.backgroundColor = $scope.color;
-            for (var i = 1; i < 6; i++) {
-                if ($scope.board[x + i][y] === 0) {
-                    document.getElementById((x + i - 1).toString()+","+y.toString()).style.backgroundColor = "gray";
-                    document.getElementById((x+i).toString()+","+y.toString()).style.backgroundColor = $scope.color;
+            $scope.placePiece = function(row, col) {
+                if (row < 5) {
+                    if ($scope.board[row + 1][col] === 0) {
+                        document.getElementById((row).toString()+","+y.toString()).style.backgroundColor = "gray";
+                        document.getElementById((row + 1).toString()+","+y.toString()).style.backgroundColor = $scope.color;
+                        row++;
+                        console.log($scope.board);
+                        setTimeout(function() {$scope.placePiece(row, col);}, 500);
+                    // } else {
+                    //     if ($scope.board[5][col] === 0) {
+                    //         $scope.board[5][col] = $scope.turn;
+                    //         $scope.checkwin(5,col);
+                    //     } else {
+                    //         for (var a = 0; a < 5; a++) {
+                    //             if ($scope.board[a+1][col] !== 0) {
+                    //                 $scope.board[a][col] = $scope.turn;
+                    //                 $scope.checkwin(a,col);
+                    //                 break;
+                    //             }
+                    //         }
+                    //     }
+                    }
+
                 }
-            }
-            if ($scope.board[5][y] === 0) {
-                $scope.board[5][y] = $scope.turn;
-                $scope.checkwin(5,y);
-            } else {
-                for (var a = 0; a < 5; a++) {
-                    if ($scope.board[a+1][y] !== 0) {
-                        $scope.board[a][y] = $scope.turn;
-                        $scope.checkwin(a,y);
-                        break;
+            };
+            setTimeout(function() {$scope.placePiece(x,y);}, 500);
+            // for (var i = 1; i < 6; i++) {
+            //     if ($scope.board[x + i][y] === 0) {
+            //         document.getElementById((x + i - 1).toString()+","+y.toString()).style.backgroundColor = "gray";
+            //         document.getElementById((x+i).toString()+","+y.toString()).style.backgroundColor = $scope.color;
+            //     }
+            // }
+            $scope.setBoard = function(z) {
+                console.log(z);
+                if ($scope.board[5][z] === 0) {
+                    $scope.board[5][z] = $scope.turn;
+                    $scope.checkwin(5,z);
+                } else {
+                    for (var a = 0; a < 5; a++) {
+                        if ($scope.board[a+1][z] !== 0) {
+                            $scope.board[a][z] = $scope.turn;
+                            $scope.checkwin(a,z);
+                            break;
+                        }
                     }
                 }
-            }
+            };
+            setTimeout(function() {$scope.setBoard(y);}, 3000);
             // for (var z = 5; z >= 0; z--) {
             //     if ($scope.board[z][y] === 0) {
             //         $scope.board[z][y] = $scope.turn;
