@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" x-ng-app="GamesApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Games</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/angular.min.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body x-ng-controller="TicTacToeController">
+  <header>
+    <div class="title">{{gameTitle}}</div>
+  </header>
+  <div class="container">
+    <div x-ng-class="{board:true}">
+      <div x-ng-class="{cell:true, red: t === 1, green: t === -1}" x-ng-repeat="t in tictactoeBoard track by $index" x-ng-click="click($index);"></div>
+
+    </div>
+  </div>
+  <footer>
+    <button onClick="replay()">Play Again?</button>
+    <button onClick="reset()">Reset</button>
+    <div class="scoreboard">
+      <div>Green
+        <div>{{player1}}</div>
+      </div>
+      <div>Draw
+        <div>{{draw}}</div>
+      </div>
+      <div>Red
+        <div>{{player2}}</div>
+      </div>
+    </div>
+  </footer>
+<!-- <div x-ng-class="{cell: true, pacman: c == 1, ghost: c == -1,  blueGhost: c == -1 && gameOver && winner == 'pacman', flash: c == 1 && gameOver && winner == 'ghost'}" x-ng-repeat="c in cells track by $index" x-ng-click = "makeMove($index);"> -->
+</div>
+</body>
+</html>
