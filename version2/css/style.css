@@ -1,8 +1,10 @@
 .container {width:100%;}
 header {text-align:center;font-size:20px;}
-.board {background-color:black;height:310px;width:310px;margin:0 auto;}
-.cell {background-color:gray;width:100px;height:100px;float:left;margin-bottom:5px;margin-right:5px;}
-.cell:nth-child(3n) {margin-right:0;}
+.tttboard {background-color:black;height:310px;width:310px;margin:0 auto;}
+.tttcell {background-color:gray;width:100px;height:100px;float:left;margin-bottom:5px;margin-right:5px;}
+.tttcell:nth-child(3n) {margin-right:0;}
+.c4board {background-color:black;height:450px;width:525px;margin:0 auto;}
+.c4cell {background-color:gray;width:75px;height:75px;float:left;border-radius:40px;}
 .red {background-color:red;}
 .green {background-color:green;}
 footer {clear:both;text-align:center;}

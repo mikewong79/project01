@@ -1,0 +1,4 @@
+<div x-ng-class="{tttboard:true}">
+  <div x-ng-class="{tttcell:true, red: t === 1, green: t === -1}" x-ng-repeat="t in tictactoeBoard track by $index" x-ng-click="click($index);">
+  </div>
+</div>
