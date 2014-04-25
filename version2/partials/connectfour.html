@@ -1,0 +1,27 @@
+<header>
+    <div class="title">{{gameTitle}}</div>
+  </header>
+  <div class="container">
+    <div class="c4board">
+      <div x-ng-repeat="row in board track by $index">
+        <div x-ng-class="{c4cell: true, red: cell === 1, green: cell === -1}" x-ng-repeat="cell in row track by $index" x-ng-click="click($parent.$index,$index);" id="{{$parent.$index}},{{$index}}"></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <button x-ng-click="replay()">Play Again?</button>
+    <button x-ng-click="reset()">Reset</button>
+    <div class="scoreboard">
+      <div>Green
+        <div>{{player1}}</div>
+      </div>
+      <div>Draw
+        <div>{{draw}}</div>
+      </div>
+      <div>Red
+        <div>{{player2}}</div>
+      </div>
+    </div>
+    <a href="#/tictactoe">Tic Tac Toe</a>
+  </footer>
+</div>

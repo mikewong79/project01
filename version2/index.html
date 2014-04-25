@@ -4,18 +4,19 @@
   <meta charset="UTF-8">
   <title>Games</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../bower_components/angular-route/angular-route.js"></script>
   <script src="js/angular.min.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
 </head>
-<body x-ng-controller="ConnectFourController">
-  <header>
+<body x-ng-view>
+  <!-- <header>
     <div class="title">{{gameTitle}}</div>
   </header>
   <div class="container">
-    <div class="c4board">
-      <div x-ng-repeat="row in board track by $index">
-        <div x-ng-class="{c4cell: true, red: cell === 1, green: cell === -1}" x-ng-repeat="cell in row track by $index" x-ng-click="click($parent.$index,$index);" id="{{$parent.$index}},{{$index}}"></div>
-      </div>
+    <div>
+
     </div>
   </div>
   <footer>
@@ -33,7 +34,6 @@
       </div>
     </div>
   </footer>
-<!-- <div x-ng-class="{cell: true, pacman: c == 1, ghost: c == -1,  blueGhost: c == -1 && gameOver && winner == 'pacman', flash: c == 1 && gameOver && winner == 'ghost'}" x-ng-repeat="c in cells track by $index" x-ng-click = "makeMove($index);"> -->
-</div>
+</div> -->
 </body>
 </html>
